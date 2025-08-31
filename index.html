@@ -708,18 +708,9 @@
             welcomeCard.style.opacity = "0";
             welcomeCard.style.transform = "scale(0.8) rotate(-10deg)";
           }, 300);
-          // After fade-out, show the cake and hide the card
+          // After fade-out, redirect to cake.html
           setTimeout(function () {
-            welcomeCard.style.display = "none";
-            cakeIcon.style.display = "block";
-            cakeIcon.style.opacity = "0";
-            cakeIcon.style.transform = "scale(0.7)";
-            setTimeout(() => {
-              cakeIcon.style.transition =
-                "all 0.7s cubic-bezier(0.68, -0.6, 0.32, 1.6)";
-              cakeIcon.style.opacity = "1";
-              cakeIcon.style.transform = "scale(1)";
-            }, 100);
+            window.location.href = "cake.html";
           }, 900);
         });
         // Start rose petals animation
