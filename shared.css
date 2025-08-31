@@ -1,0 +1,92 @@
+/* Shared styles for banners and spacing across pages */
+
+/* Age banner (shared) */
+.age-banner {
+  position: absolute;
+  top: -44px;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px) scale(0.99);
+  background: linear-gradient(90deg, #044538 0%, #1f6f50 50%, #d4af37 100%);
+  color: #fffbe6;
+  padding: 10px 18px;
+  border-radius: 999px;
+  box-shadow: 0 8px 30px rgba(4, 69, 56, 0.18),
+    0 0 18px rgba(212, 175, 55, 0.18);
+  font-family: "Pacifico", cursive;
+  font-size: 1.15rem;
+  z-index: 210;
+  letter-spacing: 0.6px;
+  border: 2px solid rgba(255, 255, 255, 0.06);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+}
+
+/* Entrance animation applied only on page load via .enter */
+.age-banner.enter {
+  animation: bannerEnter 550ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes bannerEnter {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(6px) scale(0.98);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-6px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+/* Subtle pulse for idle state */
+.age-banner.idle {
+  animation: bannerPulse 2.6s ease-in-out infinite;
+}
+@keyframes bannerPulse {
+  0% {
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-6px) scale(1.02);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+/* Increase space between Quran quote and nearby cards across pages */
+.quran-quote {
+  margin-bottom: 48px !important;
+}
+/* For multi-column layouts like cake page, increase row spacing */
+.quran-quotes-row {
+  margin-bottom: 48px !important;
+}
+
+/* Ensure greeting cards have a little extra top space so the quote doesn't overlap */
+.greeting-card,
+.cake-quotes-cake-row,
+.cake-container {
+  margin-top: 18px !important;
+}
+
+@media (max-width: 900px) {
+  .quran-quote {
+    margin-bottom: 30px !important;
+  }
+  .quran-quotes-row {
+    margin-bottom: 30px !important;
+  }
+}
+@media (max-width: 480px) {
+  .age-banner {
+    font-size: 0.95rem;
+    top: -36px;
+    padding: 8px 14px;
+  }
+  .quran-quote {
+    margin-bottom: 22px !important;
+  }
+}
