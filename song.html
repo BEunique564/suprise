@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Birthday Song & Greeting</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #ffb6c1 0%, #ffe082 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: "Roboto", Arial, sans-serif;
+        overflow-x: hidden;
+      }
+      .greeting-card {
+        background: rgba(255, 255, 255, 0.85);
+        border-radius: 30px;
+        box-shadow: 0 8px 32px rgba(255, 105, 0, 0.2),
+          0 0 20px rgba(255, 215, 0, 0.2);
+        padding: 40px 30px 30px 30px;
+        max-width: 90vw;
+        width: 400px;
+        text-align: center;
+        position: relative;
+        margin-bottom: 40px;
+        z-index: 2;
+      }
+      .greeting-card h1 {
+        font-family: "Pacifico", cursive;
+        color: #ff4081;
+        font-size: 2.5rem;
+        margin-bottom: 18px;
+        text-shadow: 2px 2px 8px #fffde7, 0 0 10px #ffd700;
+      }
+      .greeting-card p {
+        color: #6d4c41;
+        font-size: 1.2rem;
+        margin-bottom: 18px;
+        font-family: "Roboto", Arial, sans-serif;
+      }
+      .music-control {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        background: #fff3e0;
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 8px rgba(255, 64, 129, 0.15);
+        cursor: pointer;
+        z-index: 10;
+        border: none;
+        outline: none;
+        transition: background 0.2s;
+      }
+      .music-control:hover {
+        background: #ffe082;
+      }
+      .music-control svg {
+        width: 28px;
+        height: 28px;
+        fill: #ff4081;
+      }
+      @media (max-width: 500px) {
+        .greeting-card {
+          padding: 25px 10px 20px 10px;
+          width: 95vw;
+        }
+        .greeting-card h1 {
+          font-size: 1.5rem;
+        }
+        .music-control {
+          width: 36px;
+          height: 36px;
+        }
+        .music-control svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="greeting-card">
+      <button class="music-control" id="musicControl" aria-label="Toggle music">
+        <svg id="playIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+    <svg id="pauseIcon" viewBox="0 0 24 24" class="hidden">
+          <path d="M6 19h4V5H6zm8-14v14h4V5z" />
+        </svg>
+      </button>
+      <h1>Happy Birthday! 🎶🎂</h1>
+      <p>
+        Wishing you a day filled with love, laughter, and music.<br />May all your dreams come true!
+      </p>
+      <p class="birthday-wish">janm din ki hardik shubhkanaen</p>
+    </div>
+<style>
+  .hidden {
+    display: none;
+  }
+  .birthday-wish {
+    font-size: 1.1rem;
+    color: #ff4081;
+    font-family: Pacifico, cursive;
+  }
+</style>
+    </div>
+    <audio id="bgSong" loop autoplay>
+      <source
+        src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b1b7e7e2.mp3"
+        type="audio/mpeg"
+      />
+      Your browser does not support the audio element.
+    </audio>
+    <script>
+      const bgSong = document.getElementById("bgSong");
+      const musicControl = document.getElementById("musicControl");
+      const playIcon = document.getElementById("playIcon");
+      const pauseIcon = document.getElementById("pauseIcon");
+      // Try to autoplay (may be blocked by browser)
+      bgSong.volume = 0.5;
+      let isPlaying = false;
+      function updateIcons() {
+        if (bgSong.paused) {
+          playIcon.style.display = "";
+          pauseIcon.classList.add("hidden");
+        } else {
+          playIcon.style.display = "none";
+          pauseIcon.classList.remove("hidden");
+        }
+      }
+      function playMusic() {
+        bgSong
+          .play()
+          .then(() => {
+            isPlaying = true;
+            updateIcons();
+          })
+          .catch(() => {});
+      }
+      function pauseMusic() {
+        bgSong.pause();
+        isPlaying = false;
+        updateIcons();
+      }
+      musicControl.addEventListener("click", function () {
+        if (bgSong.paused) {
+          playMusic();
+        } else {
+          pauseMusic();
+        }
+      });
+      // Try to play on load
+      playMusic();
+      bgSong.addEventListener("play", updateIcons);
+      bgSong.addEventListener("pause", updateIcons);
+    </script>
+  </body>
+</html>
